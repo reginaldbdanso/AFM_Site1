@@ -1,0 +1,32 @@
+{{ define "main" }}
+  <section style="background: linear-gradient(90deg, #1976d2 0%, #e3f2fd 100%); color: #fff; padding: 5rem 2rem 4rem 2rem; border-radius: 0 0 32px 32px; margin-bottom: 3rem; text-align: center;">
+    <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem;">Find Your Dream Job</h1>
+    <p style="font-size: 1.3rem; margin-bottom: 2rem; color: #e3f2fd;">Connecting talented professionals with their dream careers.</p>
+    <a href="/posts/" style="background: #fff; color: #1976d2; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-decoration: none; box-shadow: 0 2px 8px rgba(25, 118, 210, 0.08);">Read Our Blog</a>
+  </section>
+  <section style="max-width: 1200px; margin: 0 auto 3rem auto; text-align: center;">
+    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; color: #1976d2;">Trusted by Top Companies</h2>
+    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; align-items: center;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" style="height: 40px;" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" style="height: 40px;" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" alt="Amazon" style="height: 40px;" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" alt="Meta" style="height: 40px;" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" style="height: 40px;" />
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM" style="height: 40px;" />
+    </div>
+  </section>
+  <section style="max-width: 1200px; margin: 0 auto 3rem auto;">
+    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem; color: #1976d2; text-align: center;">Latest Blog Posts</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+      {{ range first 3 (where site.RegularPages "Section" "posts") }}
+        <div class="card" style="width: 340px;">
+          {{ with .Params.featuredImage }}<img src="{{ . }}" alt="{{ $.Title }}" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;" />{{ end }}
+          <h3 style="margin-top: 0; margin-bottom: 0.5rem;"><a href="{{ .RelPermalink }}" style="color: #1976d2; text-decoration: none;">{{ .Title }}</a></h3>
+          <div style="color: #888; font-size: 0.95rem; margin-bottom: 0.5rem;">{{ .Date.Format "Jan 2, 2006" }}</div>
+          <div style="margin-bottom: 1rem;">{{ .Summary }}</div>
+          <a href="{{ .RelPermalink }}" style="color: #fff; background: #1976d2; padding: 0.5rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600;">Read More</a>
+        </div>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
